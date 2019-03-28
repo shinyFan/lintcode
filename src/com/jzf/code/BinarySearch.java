@@ -1,6 +1,6 @@
 package com.jzf.code;
 
-public class binarySearch {
+public class BinarySearch {
     public static void main(String[] args) {
         int []num={2,6,8,13,15,17,17,18,19,20};
         int i = binarySearch(num, 15);
