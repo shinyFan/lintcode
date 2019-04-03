@@ -1,7 +1,7 @@
 package com.jzf.code;
 
 public class Sqrt {
-    
+
     public int sqrt(int x) {
         // write your code here
         int result=1;
