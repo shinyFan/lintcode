@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuantu.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.yuantu.entity.User">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="gmt_create" jdbcType="DATE" property="gmtCreate" />
+    <result column="gmt_modify" jdbcType="DATE" property="gmtModify" />
+    <result column="id_no" jdbcType="VARCHAR" property="idNo" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="face_img_url" jdbcType="VARCHAR" property="faceImgUrl" />
+    <result column="face_vector" jdbcType="VARCHAR" property="faceVector" />
+    <result column="extend" jdbcType="VARCHAR" property="extend" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, gmt_create, gmt_modify, id_no, name, phone, face_img_url, face_vector, extend
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yuantu.entity.User">
+    insert into user (id, gmt_create, gmt_modify, 
+      id_no, name, phone, 
+      face_img_url, face_vector, extend
+      )
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=DATE}, #{gmtModify,jdbcType=DATE}, 
+      #{idNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{faceImgUrl,jdbcType=VARCHAR}, #{faceVector,jdbcType=VARCHAR}, #{extend,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yuantu.entity.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModify != null">
+        gmt_modify,
+      </if>
+      <if test="idNo != null">
+        id_no,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="faceImgUrl != null">
+        face_img_url,
+      </if>
+      <if test="faceVector != null">
+        face_vector,
+      </if>
+      <if test="extend != null">
+        extend,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=DATE},
+      </if>
+      <if test="gmtModify != null">
+        #{gmtModify,jdbcType=DATE},
+      </if>
+      <if test="idNo != null">
+        #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="faceImgUrl != null">
+        #{faceImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="faceVector != null">
+        #{faceVector,jdbcType=VARCHAR},
+      </if>
+      <if test="extend != null">
+        #{extend,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yuantu.entity.User">
+    update user
+    <set>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=DATE},
+      </if>
+      <if test="gmtModify != null">
+        gmt_modify = #{gmtModify,jdbcType=DATE},
+      </if>
+      <if test="idNo != null">
+        id_no = #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="faceImgUrl != null">
+        face_img_url = #{faceImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="faceVector != null">
+        face_vector = #{faceVector,jdbcType=VARCHAR},
+      </if>
+      <if test="extend != null">
+        extend = #{extend,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yuantu.entity.User">
+    update user
+    set gmt_create = #{gmtCreate,jdbcType=DATE},
+      gmt_modify = #{gmtModify,jdbcType=DATE},
+      id_no = #{idNo,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      face_img_url = #{faceImgUrl,jdbcType=VARCHAR},
+      face_vector = #{faceVector,jdbcType=VARCHAR},
+      extend = #{extend,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

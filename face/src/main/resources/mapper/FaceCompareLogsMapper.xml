@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuantu.dao.FaceCompareLogsMapper">
+  <resultMap id="BaseResultMap" type="com.yuantu.entity.FaceCompareLogs">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="gmt_create" jdbcType="DATE" property="gmtCreate" />
+    <result column="gmt_modify" jdbcType="DATE" property="gmtModify" />
+    <result column="logId" jdbcType="BIGINT" property="logid" />
+    <result column="id_no" jdbcType="VARCHAR" property="idNo" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="result" jdbcType="INTEGER" property="result" />
+    <result column="input_image" jdbcType="VARCHAR" property="inputImage" />
+    <result column="result_image" jdbcType="VARCHAR" property="resultImage" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, gmt_create, gmt_modify, logId, id_no, phone, result, input_image, result_image
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from face_compare_logs
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from face_compare_logs
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yuantu.entity.FaceCompareLogs">
+    insert into face_compare_logs (id, gmt_create, gmt_modify, 
+      logId, id_no, phone, 
+      result, input_image, result_image
+      )
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=DATE}, #{gmtModify,jdbcType=DATE}, 
+      #{logid,jdbcType=BIGINT}, #{idNo,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{result,jdbcType=INTEGER}, #{inputImage,jdbcType=VARCHAR}, #{resultImage,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yuantu.entity.FaceCompareLogs">
+    insert into face_compare_logs
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModify != null">
+        gmt_modify,
+      </if>
+      <if test="logid != null">
+        logId,
+      </if>
+      <if test="idNo != null">
+        id_no,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="result != null">
+        result,
+      </if>
+      <if test="inputImage != null">
+        input_image,
+      </if>
+      <if test="resultImage != null">
+        result_image,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=DATE},
+      </if>
+      <if test="gmtModify != null">
+        #{gmtModify,jdbcType=DATE},
+      </if>
+      <if test="logid != null">
+        #{logid,jdbcType=BIGINT},
+      </if>
+      <if test="idNo != null">
+        #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null">
+        #{result,jdbcType=INTEGER},
+      </if>
+      <if test="inputImage != null">
+        #{inputImage,jdbcType=VARCHAR},
+      </if>
+      <if test="resultImage != null">
+        #{resultImage,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yuantu.entity.FaceCompareLogs">
+    update face_compare_logs
+    <set>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=DATE},
+      </if>
+      <if test="gmtModify != null">
+        gmt_modify = #{gmtModify,jdbcType=DATE},
+      </if>
+      <if test="logid != null">
+        logId = #{logid,jdbcType=BIGINT},
+      </if>
+      <if test="idNo != null">
+        id_no = #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null">
+        result = #{result,jdbcType=INTEGER},
+      </if>
+      <if test="inputImage != null">
+        input_image = #{inputImage,jdbcType=VARCHAR},
+      </if>
+      <if test="resultImage != null">
+        result_image = #{resultImage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yuantu.entity.FaceCompareLogs">
+    update face_compare_logs
+    set gmt_create = #{gmtCreate,jdbcType=DATE},
+      gmt_modify = #{gmtModify,jdbcType=DATE},
+      logId = #{logid,jdbcType=BIGINT},
+      id_no = #{idNo,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      result = #{result,jdbcType=INTEGER},
+      input_image = #{inputImage,jdbcType=VARCHAR},
+      result_image = #{resultImage,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
