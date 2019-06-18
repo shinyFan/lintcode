@@ -69,12 +69,7 @@ class ForkAndJoinRequest extends RecursiveTask<Integer> {
         if (count <1) { //如果需要累加的数量小于等于25，则直接执行
             Test test=new Test();
             String path=basePath+start;
-            try {
-                Integer localMax = test.traverseFolder(path);
-                resultList.add(localMax);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
             return 0;
         } else { //否则fork出其他request
             int mid = (start + end) / 2;

@@ -61,6 +61,9 @@ public class BorderLayoutDemo
         frame.setBounds(300,200,700,700);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        while (true){
+            System.out.println(1);
+        }
     }
 }
 
