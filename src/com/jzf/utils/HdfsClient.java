@@ -1,4 +1,4 @@
-package com.jzf.utils;
+package com.ibeifeng.sparkproject.util;
 
 /**
  * Created by JINZONGFAN on 2019/6/22 16:45
@@ -37,7 +37,10 @@ public class HdfsClient {
         // fs = FileSystem.get(conf);
 
         // 如果这样去获取，那conf里面就可以不要配"fs.defaultFS"参数，而且，这个客户端的身份标识已经是hadoop用户
-        fs = FileSystem.get(new URI("hdfs://47.110.51.243:9000/streaming_checkpoint"), conf, "spark1");
+        conf.set("dfs.client.use.datanode.hostname", "true");//让可以使用主机名传参数
+//        conf.set("fs.defaultFS", "hdfs://spark1:8020");//主机名访问
+        fs = FileSystem.get(new URI("hdfs://47.110.51.243:9000/streaming_checkpoint"), conf, "root");
+        //   fs = FileSystem.get(new URI("hdfs://39.96.84.195:9000/streaming_checkpoint"), conf, "root");
     }
 
     /**
@@ -46,7 +49,7 @@ public class HdfsClient {
     public void testAddFileToHdfs() throws Exception {
         init();
         // 要上传的文件所在的本地路径
-        Path src = new Path("d:/result.txt");
+        Path src = new Path("d:/data/tttt.png");
         // 要上传到hdfs的目标路径
         Path dst = new Path("/");
         fs.copyFromLocalFile(src, dst);
